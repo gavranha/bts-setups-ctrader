@@ -1,6 +1,6 @@
 # BTS Setups For cTrader
 
-This is a collection of well-known trading setups for backtests.
+This is a collection of well-known trading setups for backtest.
 
 Each setup has its own README about the code and a GitHub page about the setup.
 
