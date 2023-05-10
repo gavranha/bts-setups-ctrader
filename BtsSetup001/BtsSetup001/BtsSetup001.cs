@@ -10,7 +10,7 @@ using cAlgo.API.Internals;
 namespace cAlgo.Robots
 {
     [Robot(AccessRights = AccessRights.None)]
-    public class BtsSetups_001 : Robot
+    public class BtsSetup001 : Robot
     {
         [Parameter("Slow EMA period", Group = "Signal", DefaultValue = 50, MinValue = 2, Step = 1)]
         public int SlowEmaPeriod { get; set; }
