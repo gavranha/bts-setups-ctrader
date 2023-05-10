@@ -12,14 +12,19 @@ namespace cAlgo.Robots
     [Robot(AccessRights = AccessRights.None)]
     public class BtsSetups_001 : Robot
     {
-        [Parameter("Slow EMA period", DefaultValue = 50, MinValue = 2, Step = 1)]
+        [Parameter("Slow EMA period", Group = "Signal", DefaultValue = 50, MinValue = 2, Step = 1)]
         public int SlowEmaPeriod { get; set; }
-        [Parameter("Fast EMA period", DefaultValue = 9, MinValue = 2, Step = 1)]
+        [Parameter("Fast EMA period", Group = "Signal", DefaultValue = 9, MinValue = 2, Step = 1)]
         public int FastEmaPeriod { get; set; }
+
+        [Parameter("Quantity", Group = "Trading", DefaultValue = 0.01, MinValue = 0.01, Step = 0.01)]
+        public double Quantity { get; set; }
 
         private DataSeries EmaSource;
         private ExponentialMovingAverage SlowEma;
         private ExponentialMovingAverage FastEma;
+        private double VolumeInUnits { get => Symbol.QuantityToVolumeInUnits(Quantity); }
+        private const string Label = "BtsSetup001";
 
         protected override void OnStart()
         {
@@ -34,10 +39,35 @@ namespace cAlgo.Robots
             if (HasBuySignal())
             {
                 Print($"HasBuySignal {HasBuySignal()}");
+
+                foreach (Position position in Positions.FindAll(Label))
+                {
+                    ClosePosition(position);
+                }
+
+                EnterAtMarket(TradeType.Buy);
             }
             else if (HasSellSignal())
             {
                 Print($"HasSellSignal {HasSellSignal()}");
+
+                foreach (Position position in Positions.FindAll(Label))
+                {
+                    ClosePosition(position);
+                }
+
+                EnterAtMarket(TradeType.Sell);
+            }
+        }
+
+        private void EnterAtMarket(TradeType tradeType)
+        {
+            TradeResult tradeResult = ExecuteMarketOrder(
+                tradeType, SymbolName, VolumeInUnits, Label, null, null);
+
+            if (!tradeResult.IsSuccessful)
+            {
+                Print("Market Order failed: {0}", tradeResult.Error);
             }
         }
 
