@@ -1,0 +1,19 @@
+---
+layout: post
+title:  "Setup 002 - IFR2"
+date:   2023-05-11 00:55:38 -0400
+category: setups
+tags: [RSI]
+---
+IFR => Índice de Força Relativa in Brazilian Portuguese. It means Relative Strenght Index, the well-known RSI. This setup is very popular among Stock Exchange traders in Brazil. IFR2 is a simple and objective setup recommended for a daily timeframe.
+
+It uses the RSI for the last 2 (two) periods. You buy the close of the day if RSI is below a threshold, usually 10 ou even 5. The take-profit target is the max value of the last two periods. You should update this target every day that it is not reached.
+
+There is no stop-loss. The exit is by the target, even with loss. Finally, you should close all positions seven days older.
+
+There is a variant by Larry Connors that will be included here soon.
+
+
+Learn more about this setup:
+
+[Alexandre "Stormer" Wolwacz on YouTube (in Portuguese)](https://www.youtube.com/watch?v=N0CPEpf8ESQ)
