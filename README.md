@@ -1,4 +1,4 @@
-# BTS Setups For cTrader
+# Setups For cTrader
 
 This is a collection of well-known trading setups for backtest.
 
